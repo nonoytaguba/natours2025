@@ -1,0 +1,4 @@
+ERROR💥 Error: Validation failed: 
+name: A tour name must have more or equal than 10 characters,
+difficulty: Difficulty is either: easy, medium, difficult, 
+ratingsAverage: Rating must be below 5.0
