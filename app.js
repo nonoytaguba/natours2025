@@ -13,8 +13,10 @@ const tourRouter = require('./routes/tourRoutes.js');
 const userRouter = require('./routes/userRoutes.js');
 const reviewRouter = require('./routes/reviewRoutes.js'); //lesson 155 creating and getting reviews
 const bookingRouter = require('./routes/bookingRoutes.js');  //lesson 211
+const bookingController = require('./controller/bookingController.js');  //lesson 227
 const viewRouter = require('./routes/viewRoutes.js'); //lesson 155 creating and getting reviews
 const cookieParser = require('cookie-parser');  //Lesson 189, 14:52
+const bodyParser = require('body-parser'); //lesson 227
 const compression = require('compression');
 const cors = require('cors'); //lesson 226
 
@@ -83,6 +85,9 @@ const limiter = rateLimit({
 
 app.use('/api',limiter);
 
+app.post('/webhook-checkout',
+     bodyParser.raw({type: 'application/json'}),
+     bookingController.webhookCheckout);
 
 //Body parser, reading data from the body into req.body
 app.use(express.json({limit: '10kb'})); // parse the data from the body
