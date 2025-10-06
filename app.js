@@ -16,6 +16,7 @@ const bookingRouter = require('./routes/bookingRoutes.js');  //lesson 211
 const viewRouter = require('./routes/viewRoutes.js'); //lesson 155 creating and getting reviews
 const cookieParser = require('cookie-parser');  //Lesson 189, 14:52
 const compression = require('compression');
+const cors = require('cors'); //lesson 226
 
 // Start express app
 const app = express();
@@ -24,6 +25,18 @@ app.set('view engine', 'pug'); //Lesson 176
 app.set('views', path.join(__dirname, 'views'));
 
 // 1) GLOBAL MIDDLEWARES
+// Implenent CORS (Cross Origin Resource Sharing) lesson 226
+app.use(cors());
+// Access-Control-Allow-Origin *
+// api.natours.com, front-end naturs.com
+// app.use(cors({
+// origin: 'https://www.natours.com'
+//}))
+
+
+app.options('*', cors());
+// app.options('/api/v1/tours/:id', cors());
+
 //Serving static files
 // app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, 'public'))); //Lesson 176, 4:55
