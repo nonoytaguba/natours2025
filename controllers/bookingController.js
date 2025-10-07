@@ -22,7 +22,7 @@ const session = await stripe.checkout.sessions.create({
             name: `${tour.name} Tour`,
             description: tour.summary,  
             // images: ['https://natours.dev/img/tours/tour-1-cover.jpg']  
-            images: ['https://https://natours2025-3.onrender.com/img/tours/tour-1-cover.jpg']       
+            images: [`${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`]       
           },
           unit_amount: tour.price * 100,
         },
